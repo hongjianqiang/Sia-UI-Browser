@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+	<!-- CSS style -->
+	<style>
+	body{ width: 452px; height: 532px; }
+	.pannel{ width: 422px; height: auto; background: url(../img/rank.png) 0 0 #fff no-repeat; padding-left:10; margin-left: calc(100vw - 100%); }
+	.pannel ul { margin: 0px; padding: 0; padding-top: 60px; }
+	.pannel ul li{ list-style:none; display:block; height:40px; line-height:40px; padding-left:45px; color:#666; cursor:pointer; background-position:5% 50%; background-repeat:no-repeat; background-color:#f7f7f7; margin-bottom:1px; }
+	.pannel ul li:hover{ background-color:#eee; }
+	.pannel ul li a{ color:#666; text-decoration:none; display:block; padding-left:10px; }
+	.pannel i{ width:40px;height:40px;float:right;display:block;background:url(img/r_arrow.png) center center no-repeat;-webkit-transition: 0.2s ease-in;-moz-transition: 0.2s ease-in;-o-transition: 0.2s ease-in;transition: 0.2s ease-in;}
+	.pannel i.on{ background:url(img/r_arrow.png) center center no-repeat;-moz-transform: rotate(90deg);-o-transform: rotate(90deg);-webkit-transform: rotate(90deg);transform: rotate(90deg);}
+	.version { float: right; margin-top: 20px; margin-right: 20px; color: #ccc; }
+	</style>
+	<script src="js/jquery.js"></script>
+</head>
+
+<body>
+	<div class="pannel">
+		<span class="version">当前版本：v <em>1.0.0</em></span>
+		<ul id="lists">
+			<!--
+			<li id="PLGXMK" style="background-image:url(img/copy.png);">
+				<a href="html/批量更新模块.html">批量更新模块 <i></i> </a>
+			</li>
+			<li id="DSGXFB" style="background-image:url(img/Alarm-clock.png);">
+				<a href="html/定时更新发布.html">定时更新发布 <i></i> </a>
+			</li>
+			<li id="XSMKID" style="background-image:url(img/copy.png);">
+				<a href="html/显示模块ID.html">显示模块ID <i></i> </a>
+			</li>
+			-->
+		</ul>
+	</div>
+	<!-- Javascript -->
+	<script src="js/popup.js"></script>
+</body>
+</html>

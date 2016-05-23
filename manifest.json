@@ -1,0 +1,36 @@
+{
+	"name": "Sia-UI-Browser",
+	"version": "1.0.0",
+	"manifest_version": 2,
+	"minimum_chrome_version": "18.0",
+	"description": "分布式云存储Sia的浏览器UI界面。",
+	"icons": { "16": "img/icon16.png", "48": "img/icon48.png", "128": "img/icon128.png" },
+	"page_action": {
+		"default_title": "Sia-UI-Browser",
+		"default_popup": "popup.html"
+	},
+	"permissions" : [
+		"tabs",
+		"activeTab",
+		"storage",
+		"unlimitedStorage",
+		"webRequest",
+		"webRequestBlocking",
+		"\u003Call_urls>",
+		"*://*/Sia-UI-Browser"
+	],
+	"background": {
+		"scripts": [ "js/background.js" ]
+	},
+	"content_scripts": [{
+		"matches": [ "*://*/Sia-UI-Browser" ],
+		"js": [ "js/jquery.js" ],
+		"run_at": "document_end"
+	}],
+	"web_accessible_resources": [
+		"img/*.png",
+		"css/*.css",
+		"js/*.js",
+		"bootstrap-3.3.5-dist/*"
+	]
+}
