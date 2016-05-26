@@ -28,9 +28,9 @@
 		"run_at": "document_end"
 	}],
 	"web_accessible_resources": [
-		"img/*.png",
-		"css/*.css",
-		"js/*.js",
-		"bootstrap-3.3.5-dist/*"
+		"img/*.*",
+		"css/*.*",
+		"js/*.*",
+		"fonts/*.*"
 	]
 }

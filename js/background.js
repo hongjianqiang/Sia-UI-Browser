@@ -39,10 +39,11 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 	if ( tab.url.indexOf('/Sia-UI-Browser') > -1 && changeInfo.status === 'complete' ) {
 		setUA('Sia-Agent', 'Custom');
 		chrome.pageAction.show(tabId);
-		chrome.tabs.executeScript(tabId, {file: "js/beautify.js"});	// 这个不写入 manifest.json 中是为了方便调试
-		chrome.tabs.executeScript(tabId, {file: "js/ui.js"});	// 这个不写入 manifest.json 中是为了方便调试
-		chrome.tabs.executeScript(tabId, {file: "js/event.js"});	// 这个不写入 manifest.json 中是为了方便调试
-		chrome.tabs.executeScript(tabId, {file: "js/select_api.js"});	// 这个不写入 manifest.json 中是为了方便调试
+		chrome.tabs.executeScript(tabId, {file: "js/bootstrap.js"});
+		chrome.tabs.executeScript(tabId, {file: "js/beautify.js"});
+		chrome.tabs.executeScript(tabId, {file: "js/ui.js"});
+		chrome.tabs.executeScript(tabId, {file: "js/event.js"});
+		chrome.tabs.executeScript(tabId, {file: "js/select_api.js"});
 	}
 });
 

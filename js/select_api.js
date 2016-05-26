@@ -12,5 +12,6 @@
 		<option data-aipType="GET" data-api="/daemon/constants">/daemon/constants [GET]</option>
 		<option data-aipType="GET" data-api="/daemon/stop">/daemon/stop [GET]</option>
 		<option data-aipType="GET" data-api="/daemon/version">/daemon/version [GET]</option>
+		<option data-aipType="GET" data-api="/wallet">/wallet [GET]</option>
 	`);
  })();
