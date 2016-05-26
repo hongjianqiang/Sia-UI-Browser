@@ -52,6 +52,22 @@ function showMsg(here, msg, type, fadeOutTime){
 	}, time);
 }
 
+function delSuffixes(str, decimal, num){
+	var n = num || 22;
+	var d = decimal || 2;
+	var f;
+
+	if (str.length > 22) {
+		f = parseFloat( str.substring(0, str.length - n) );
+	} else {
+		f = parseFloat( str );
+	}
+
+	return f / Math.pow(10, d);
+	
+}
+
+
 (function(){
 	function listInit($that) {
 		$('.list a').removeClass('active');
@@ -102,7 +118,7 @@ function showMsg(here, msg, type, fadeOutTime){
 						<label>设置新钱包密码：</label> <input name="encryptionpassword" type="password" class="form-control" placeholder="Password">
 						<label>再次输入密码：</label> <input type="password" class="form-control" placeholder="Password">
 					</div>
-					<button data-api="/wallet/init" type="button" class="btn btn-primary">确定</button>
+					<button data-api="/wallet/init" type="button" class="btn btn-primary" data-keyboard="enter">确定</button>
 				</form>
 			`);
 		} else {
@@ -117,8 +133,9 @@ function showMsg(here, msg, type, fadeOutTime){
 				<form id="unLockWallet" role="alert" class="alert alert-warning alert-dismissible fade in form-inline">
 					<div class="form-group">
 						<label>输入钱包密码：</label> <input name="encryptionpassword" type="password" class="form-control" placeholder="Password">
+						<input style="display:none;"/>
 					</div>
-					<button data-api="/wallet/unlock" type="button" class="btn btn-primary">确定</button>
+					<button data-api="/wallet/unlock" type="button" class="btn btn-primary" data-keyboard="enter">确定</button>
 				</form>
 			`);
 		} else {
@@ -136,7 +153,7 @@ function showMsg(here, msg, type, fadeOutTime){
 						<label>输入 seed：</label> <input name="seed" type="text" class="form-control">
 						<input name="dictionary" value="english" style="display:none;"/>
 					</div>
-					<button data-api="/wallet/seed" type="button" class="btn btn-primary">确定</button>
+					<button data-api="/wallet/seed" type="button" class="btn btn-primary" data-keyboard="enter">确定</button>
 				</form>
 			`);
 		} else {
@@ -222,6 +239,16 @@ function showMsg(here, msg, type, fadeOutTime){
 			
 			$('.height').text(obj.height);
 			$('.currentblock').text(obj.currentblock);
+
+			var api = '/wallet/transactions?startheight=1&endheight=' + obj.height;
+			$.get(api, function(data){
+				var obj = JSON.parse(data);
+
+				var arr = obj.confirmedtransactions;
+				for (var i in arr) {
+				//	console.log( arr[i].transactionid );
+				}
+			});
 		});
 
 		$.get('/wallet', function(data){
@@ -238,9 +265,13 @@ function showMsg(here, msg, type, fadeOutTime){
 
 			}
 
-			$('.confirmedsiacoinbalance').text(obj.confirmedsiacoinbalance);
-			$('.unconfirmedoutgoingsiacoins').text(obj.unconfirmedoutgoingsiacoins);
-			$('.unconfirmedincomingsiacoins').text(obj.unconfirmedincomingsiacoins);
+			var confirmedsiacoinbalance = delSuffixes(obj.confirmedsiacoinbalance);
+			var unconfirmedoutgoingsiacoins = delSuffixes(obj.unconfirmedoutgoingsiacoins);
+			var unconfirmedincomingsiacoins = delSuffixes(obj.unconfirmedincomingsiacoins);
+
+			$('.confirmedsiacoinbalance').text(confirmedsiacoinbalance);
+			$('.unconfirmedoutgoingsiacoins').text(unconfirmedoutgoingsiacoins);
+			$('.unconfirmedincomingsiacoins').text(unconfirmedincomingsiacoins);
 		});
 
 		$.get('/wallet/addresses', function(data){
@@ -312,14 +343,14 @@ function showMsg(here, msg, type, fadeOutTime){
 
 		callSiaAPI('POST', api, serial, function(obj){
 			console.log(obj);
-			if (obj.Success == true) {
+			if (obj.Success === true) {
 				showMsg('#WalletDetail', '钱包已解锁');
-				$('#unLockWallet').remove();
 			} else {
 				showMsg('#WalletDetail', obj.responseText, '');
-				$('#unLockWallet').remove();
 			}
 		});
+
+		$('#unLockWallet').remove();
 	});
 
 	$body.on('click', '[data-api="/wallet/init"]', function(e){
@@ -358,3 +389,12 @@ function showMsg(here, msg, type, fadeOutTime){
 	});
 })();
 
+
+document.onkeydown = function(e) {
+	var theEvent = window.event || e;
+	var code = theEvent.keyCode || theEvent.which;
+	if (code == 13) {
+		//alert('你按下了回车按钮 Enter. ');
+		$('[data-keyboard="enter"]').click();
+	}
+}

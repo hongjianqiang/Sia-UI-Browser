@@ -73,19 +73,23 @@
 					<div id="wallet" class="row">
 						<div class="col-md-12 info">
 							<div class="col-md-6">
-								<span>余额：<samp class="confirmedsiacoinbalance"></samp></span>
-								<span>未确认收入：<samp class="unconfirmedincomingsiacoins"></samp></span>
-								<span>未确认支出：<samp class="unconfirmedoutgoingsiacoins"></samp></span>
+								<span>余额：<samp class="confirmedsiacoinbalance"></samp> S</span>
+								<span>未确认收入：<samp class="unconfirmedincomingsiacoins"></samp> S</span>
+								<span>未确认支出：<samp class="unconfirmedoutgoingsiacoins"></samp> S</span>
 								<span>钱包状态：<samp class="unlocked"></samp></span>
 							</div>
 							<div class="col-md-6">
 								<div class="btn-group btn-toolbar" role="group" aria-label="group">
+									<!--
 									<button data-api="/wallet/siagkey" type="button" class="btn btn-default">导入 Siag Key</button>
+									-->
 									<button data-action="InitWallet" type="button" class="btn btn-default">新建钱包</button>
 									<button data-action="unLockWallet" type="button" class="btn btn-default">解锁钱包</button>
 									<button data-api="/wallet/lock" type="button" class="btn btn-default">加锁钱包</button>
 									<button data-action="InputSeed" type="button" class="btn btn-default">导入 Seed</button>
+									<!--
 									<button data-api="/wallet/033x" type="button" class="btn btn-default">导入 Legacy 钱包</button>
+									-->
 								</div>
 							</div>
 						</div>
@@ -108,6 +112,32 @@
 							</div>
 							<div class="row">
 								<h1>交易细节</h1>
+								<div class="table-responsive" style="height:30%;">
+									<table class="table table-striped table-hover TxTable">
+										<thead>
+											<tr>
+											<th>TxID</th>
+											<th>地址</th>
+											<th>数量</th>
+											<th>收入/支出</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+											<th>TxID</th>
+											<td>地址</td>
+											<td>数量</td>
+											<td>收入/支出</td>
+											</tr>
+											<tr>
+											<th>TxID</th>
+											<td>地址</td>
+											<td>数量</td>
+											<td>收入/支出</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
 							</div>
 						</div>
 					</div>
